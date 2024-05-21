@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -18,7 +19,7 @@ class MainController extends AbstractController
             'captain' => 'Jean-Luc Pickles',
             'status' => 'under construction',
         ];
-        echo 'Testing';
+
         return $this->render('main/homepage.html.twig', [
             'starshipCount' => $starshipCount,
             'myShip' => $myShip
