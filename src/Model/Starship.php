@@ -9,14 +9,14 @@ class Starship
         private string $name,
         private string $class,
         private string $captain,
-        private string $status
+        private StarshipStatusEnum $status
     ) {
     }
 
     /**
      * Get the value of id
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -36,7 +36,7 @@ class Starship
     /**
      * Get the value of name
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -56,7 +56,7 @@ class Starship
     /**
      * Get the value of class
      */
-    public function getClass()
+    public function getClass(): string
     {
         return $this->class;
     }
@@ -76,7 +76,7 @@ class Starship
     /**
      * Get the value of captain
      */
-    public function getCaptain()
+    public function getCaptain(): string
     {
         return $this->captain;
     }
@@ -96,7 +96,7 @@ class Starship
     /**
      * Get the value of status
      */
-    public function getStatus()
+    public function getStatus(): StarshipStatusEnum
     {
         return $this->status;
     }
@@ -111,5 +111,19 @@ class Starship
         $this->status = $status;
 
         return $this;
+    }
+
+    public function getStatusString(): string
+    {
+        return $this->status->value;
+    }
+
+    public function getStatusImageFileName(): string
+    {
+        return match ($this->status) {
+            StarshipStatusEnum::WAITING => 'images/status-waiting.png',
+            StarshipStatusEnum::IN_PROGRESS => 'images/status-in-progress.png',
+            StarshipStatusEnum::COMPLETED => 'images/status-complete.png'
+        };
     }
 }
